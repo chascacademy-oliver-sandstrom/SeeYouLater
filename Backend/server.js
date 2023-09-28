@@ -27,7 +27,7 @@ app.use(cors());
 
 app.use('/api', require('./routes/auth'));
 app.use('/api', require('./routes/api'));
-
+app.use('/api/watchlist', require('./routes/watchlist'));
 
 app.use((err, req, res, next) => {
   console.error("Error:", err);

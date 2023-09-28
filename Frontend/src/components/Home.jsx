@@ -9,7 +9,6 @@ function Home() {
 
   const handleLogin = async () => {
     try {
-      // Skapa ett objekt med användarnamn och lösenord
       const loginData = {
         username,
         password,

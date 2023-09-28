@@ -14,6 +14,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           {/* Lägg till Route för ResultPage */}
           <Route path="/resultPage" element={<ResultPage />} />
+          
         </Routes>
       </div>
     </Router>

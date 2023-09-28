@@ -7,10 +7,8 @@ const router = express.Router();
 router.post('/register', async (req, res, next) => {
   try {
     const { username, password } = req.body;
-    console.log("Raw password:", password); 
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
-    console.log("Hashed password:", hashedPassword); 
 
     const user = new User({ username, password: hashedPassword });
     await user.save();
@@ -33,9 +31,7 @@ router.post('/login', async (req, res) => {
       return res.status(401).json({ message: 'Failed to login' });
     }
 
-    console.log("Raw password for login:", password), user.password; 
     const passwordMatch = await bcrypt.compare(password, user.password);
-    console.log("Password comparison result:", passwordMatch, user.password); 
 
     if (!passwordMatch) {
       console.error("Incorrect password");
@@ -43,8 +39,6 @@ router.post('/login', async (req, res) => {
     }
 
     const token = jwt.sign({ user }, process.env.SECRET_KEY);
-    console.log("JWT-token:", token);
-    console.log("User logged in successfully:", user.username);
     return res.json({ token });
   } catch (error) {
     console.error("Error during authentication:", error);

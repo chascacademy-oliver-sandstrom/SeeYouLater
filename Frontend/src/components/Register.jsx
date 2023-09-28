@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState(''); 
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
     try {
@@ -17,14 +20,20 @@ function Register() {
       const message = response.data.message;
 
       console.log(`Registrering lyckades: ${message}`);
+      setErrorMessage(''); 
     } catch (error) {
       console.error('Fel vid registrering:', error);
+      setErrorMessage('Användarnamnet är redan upptaget. Välj ett annat.');
     }
+
+    navigate('/resultPage');
+
   };
 
   return (
     <div>
       <h1>Registrera dig</h1>
+      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} 
       <form>
         <div>
           <label>Användarnamn:</label>
