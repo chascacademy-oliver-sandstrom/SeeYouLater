@@ -36,10 +36,17 @@ function ResultPage() {
   const addToWatchlist = (result) => {
     axios
       .post('http://localhost:3001/api/watchlist/add', {
+        
         title: result.Title,
         year: result.Year,
         poster: result.Poster,
-      })
+      },
+        {
+          headers: {
+            Authorization: `Bearer ${authToken}`, 
+          },
+      }
+    )
       .then((response) => {
         console.log('Film tillagd på watchlist');
       })
