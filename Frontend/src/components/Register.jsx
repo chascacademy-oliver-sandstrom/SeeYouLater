@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import styles from './Register.module.css';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -31,22 +32,25 @@ function Register() {
   };
 
   return (
-    <div>
-      <h1>Registrera dig</h1>
-      {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>} 
-      <form>
-        <div>
-          <label>Användarnamn:</label>
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </div>
-        <div>
-          <label>Lösenord:</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </div>
-        <button type="button" onClick={handleRegister}>Registrera</button>
-      </form>
+    <div className={styles.registerContainer}>
+      <div className={styles.registerCard}>
+        <h1 className="text-2xl font-bold mb-4">Registrera dig</h1>
+        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+        <form>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600">Användarnamn:</label>
+            <input type="text" className={styles.registerInput} value={username} onChange={(e) => setUsername(e.target.value)} />
+          </div>
+          <div className="mb-4">
+            <label className="block text-sm font-medium text-gray-600">Lösenord:</label>
+            <input type="password" className={styles.registerInput} value={password} onChange={(e) => setPassword(e.target.value)} />
+          </div>
+          <button type="button" className={styles.registerButton} onClick={handleRegister}>Registrera</button>
+        </form>
+      </div>
     </div>
   );
 }
+
 
 export default Register;

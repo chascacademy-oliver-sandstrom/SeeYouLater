@@ -3,9 +3,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const passport = require('./config/passport');
-const bodyParser = require('body-parser'); // Lägg till body-parser
+const bodyParser = require('body-parser'); 
 
-const app = express(); // Skapa en Express-instans
+const app = express(); // Create an express instance 
 
 const MONGODB_URL = process.env.MONGODB_URL;
 mongoose.connect(MONGODB_URL, {

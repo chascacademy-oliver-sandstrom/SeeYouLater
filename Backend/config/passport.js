@@ -12,11 +12,11 @@ passport.use(new LocalStrategy(
     try {
       const user = await User.findOne({ username });
 
-      if (!user) return done(null, false, { message: 'Användaren hittades inte' });
+      if (!user) return done(null, false, { message: 'User was not found' });
 
       const isMatch = await user.comparePassword(password);
 
-      if (!isMatch) return done(null, false, { message: 'Fel lösenord' });
+      if (!isMatch) return done(null, false, { message: 'Wrong Password' });
 
       return done(null, user);
     } catch (err) {
